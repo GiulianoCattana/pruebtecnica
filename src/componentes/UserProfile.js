@@ -7,12 +7,19 @@ import './UserProfile.css';
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
   const googleMapUrl = "https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&libraries=places";
+  var rendered=false;
 
   useEffect(() => {
-    fetch('https://randomuser.me/api/')
-      .then(response => response.json())
-      .then(data => setUserData(data.results[0]))
-      .catch(error => console.error('Error obteniendo datos del usuario:', error));
+    if(!rendered)
+    {
+      console.log("usereffect");
+      fetch('https://randomuser.me/api/')
+        .then(response => response.json())
+        .then(data => setUserData(data.results[0]))
+        .catch(error => console.error('Error obteniendo datos del usuario:', error));
+        rendered=true;
+    }
+
   }, []);
 
   const renderMap = () => {
@@ -29,12 +36,15 @@ const UserProfile = () => {
               lat: parseFloat(userData.location.coordinates.latitude),
               lng: parseFloat(userData.location.coordinates.longitude)
             }}
-            defaultZoom={10}
+            draggable={false}    
+            zoomControl={false}  
+            defaultZoom={100}
           >
             <div
               lat={parseFloat(userData.location.coordinates.latitude)}
               lng={parseFloat(userData.location.coordinates.longitude)}
               className="map-pin"
+              
             >
               <img src={userData.picture.medium} alt="Ubicación del usuario" />
             </div>
