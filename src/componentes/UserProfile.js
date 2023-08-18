@@ -38,7 +38,7 @@ const UserProfile = () => {
             }}
             draggable={false}    
             zoomControl={false}  
-            defaultZoom={100}
+            defaultZoom={0}
           >
             <div
               lat={parseFloat(userData.location.coordinates.latitude)}
@@ -56,18 +56,22 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="profile-container">
-      <h2>Perfil de Usuario</h2>
-      {userData && (
-        <div className="user-info">
-          <img src={userData.picture.large} alt="Imagen de perfil" />
-          <p><strong>Sexo:</strong> {userData.gender}</p>
-          <p><strong>Nombre y Apellido:</strong> {userData.name.title} {userData.name.first} {userData.name.last}</p>
-          <p><strong>Correo electrónico:</strong> {userData.email}</p>
-          <p><strong>Dirección:</strong> {userData.location.street.number} {userData.location.street.name}, {userData.location.city}, {userData.location.state}, {userData.location.country}, {userData.location.postcode}</p>
-          <p><strong>Teléfono:</strong> {userData.phone}</p>
-        </div>
-      )}
+      <div className="profile-container">
+        <h2>Perfil de Usuario</h2>
+        {userData && (
+          <div className="user-info">
+            <div className="user-picture">
+              <img src={userData.picture.large} alt="Imagen de perfil" />
+            </div>
+            <div className="user-details">
+              <p><strong>Sexo:</strong><br/> {userData.gender}</p>
+              <p><strong>Nombre y Apellido:</strong><br/>  {userData.name.title} {userData.name.first} {userData.name.last}</p>
+              <p><strong>Correo electrónico:</strong> <br/> {userData.email}</p>
+              <p><strong>Dirección:</strong> <br/> {userData.location.street.number} {userData.location.street.name}, {userData.location.city}, {userData.location.state}, {userData.location.country}, {userData.location.postcode}</p>
+              <p><strong>Teléfono:</strong> <br/> {userData.phone}</p>
+            </div>
+          </div>
+        )}
       {renderMap()}
     </div>
   );
