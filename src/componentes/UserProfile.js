@@ -57,18 +57,20 @@ const UserProfile = () => {
 
   return (
       <div className="profile-container">
-        <h2>Perfil de Usuario</h2>
         {userData && (
           <div className="user-info">
             <div className="user-picture">
+            <h1>Usuario del Perfil</h1>
               <img src={userData.picture.large} alt="Imagen de perfil" />
             </div>
+            
             <div className="user-details">
               <p><strong>Sexo:</strong><br/> {userData.gender}</p>
-              <p><strong>Nombre y Apellido:</strong><br/>  {userData.name.title} {userData.name.first} {userData.name.last}</p>
+              <p><strong>Nombre y Apellido:</strong>{userData.name.title} {userData.name.first} {userData.name.last}</p>
               <p><strong>Correo electrónico:</strong> <br/> {userData.email}</p>
               <p><strong>Dirección:</strong> <br/> {userData.location.street.number} {userData.location.street.name}, {userData.location.city}, {userData.location.state}, {userData.location.country}, {userData.location.postcode}</p>
               <p><strong>Teléfono:</strong> <br/> {userData.phone}</p>
+              
             </div>
           </div>
         )}
